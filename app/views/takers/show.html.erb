@@ -1,0 +1,14 @@
+<h2 class="offer"><%= @taker.name%>さん</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p class="show"><%= image_tag @taker.image.thumb.to_s %></p>
+    <p class="show">年齢　<%= @taker.age%>歳</p>
+    <p class="show">性別　<%= @taker.gender.category%></p>
+    <p class="show">居住地　<%= @taker.place.name%></p>
+    <!-- <h6>提供できるスキル</h6> -->
+    <p class="show"><%= @taker.body%></p>
+  </div>
+</div>
+<div class="offer">
+  <a href="#" class="btn btn-danger"><h4>奢りたい！！(オファーする)</h4></a>
+</div>

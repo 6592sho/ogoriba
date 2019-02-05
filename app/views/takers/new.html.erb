@@ -1,0 +1,26 @@
+<h3>新規登録ページ</h3>
+  <%= form_tag("/create",:multipart => true) do %>
+      <%= label_tag "form-image", "画像" %>
+      <%= file_field :taker, :image, id:"form-image", class:"form-control" %>
+    <div class="form-group">
+      <%= label_tag "form-name", "名前" %>
+      <%= text_field :taker, :name, id:"form-name", class:"form-control", placeholder:"名前" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-age", "年齢" %>
+      <%= text_field :taker, :age, id:"form-age", class:"form-control", placeholder:"年齢" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-gender", "性別" %>
+      <%= select_tag 'taker[gender_id]', options_from_collection_for_select(@genders, :id, :category), id:"form-gender",class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-place", "場所" %>
+      <%= select_tag 'taker[place_id]', options_from_collection_for_select(@places, :id, :name), id:"form-place",class:"form-control" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-body", "自己紹介" %>
+      <%= text_field :taker, :body, id:"form-body", class:"form-control", placeholder:"提供できるスキルなど" %>
+    </div>
+      <%= submit_tag "新規作成", class:"btn btn-default" %>
+<% end %>

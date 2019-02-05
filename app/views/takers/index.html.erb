@@ -1,0 +1,19 @@
+<%= image_tag("man.jpg", class:"image", :alt => "アイコン") %>
+<h1>Ogoriba</h1>
+<p>スキルを活かして、奢ってもらおう！！</p>
+
+<% @takers.each do |t| %>
+  <a href="/show/<%=t.id.to_s%>">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p><%= t.name%>さん</p>
+          <p><%= t.age%>歳</p>
+          <p><%= t.gender.category%></p>
+          <p><%= t.place.name%></p>
+        </div>
+      </div>
+    </div>
+  </a>
+<% end %>
+<a href="/new" class="btn btn-default">奢られたい！！</a>
