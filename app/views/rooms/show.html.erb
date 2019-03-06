@@ -1,0 +1,34 @@
+<% @entries.each do |e| %>
+  <% if current_user.id != e.user.id %>
+    <h2 class="show"><strong><a href="/users/<%= e.user.id %>"><%= e.user.name%>さん</a></strong></h2>
+  <% end %>
+<% end %>
+
+<hr>
+<% if @messages.present? %>
+  <% @messages.each do |m| %>
+    <% if current_user.id == m.user.id %>
+      <div class="m-left">
+        <p class = "m-left-text"><%= m.content %></p>
+      </div>
+      <br>
+    <% else %>
+      <div class="m-right">
+        <p class = "m-right-text"><%= m.content %></p>
+      </div>
+      <small><strong><a href="/users/<%= m.user_id %>"></a></strong></small>
+      <br>
+    <% end %>
+  <% end %>
+<% else %>
+  <h3 class="text-center show">メッセージはまだありません</h3>
+<% end %>
+
+<%= form_for @message do |f| %>
+  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70, class:"show" %>
+  <%= f.hidden_field :room_id, :value => @room.id, class:"show" %>
+  <br>
+  <%= f.submit "投稿する", class:"btn btn-default show" %>
+<% end %>
+
+<a href="/" class="show">ユーザー一覧に戻る</a>

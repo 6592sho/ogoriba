@@ -2,13 +2,37 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <p class="show"><%= image_tag @taker.image.thumb.to_s %></p>
-    <p class="show">年齢　<%= @taker.age%>歳</p>
-    <p class="show">性別　<%= @taker.gender.category%></p>
-    <p class="show">居住地　<%= @taker.place.name%></p>
-    <!-- <h6>提供できるスキル</h6> -->
-    <p class="show"><%= @taker.body%></p>
+    <div class="table-responsive">
+      <table class="table">
+        <tr>
+          <th><p class="show">年齢：<%= @taker.age%>歳</p></th>
+          <th><p class="show">性別：<%= @taker.gender.category%></p></th>
+          <th><p class="show">居住地：<%= @taker.place.name%></p></th>
+          <th><div class="show">一言：<%= @taker.body%></div></th>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
-<div class="offer">
-  <a href="#" class="btn btn-danger"><h4>奢りたい！！(オファーする)</h4></a>
-</div>
+
+<%if current_user.id == @taker.user_id%>
+  <div class="buttons">
+    <a href="/taker/<%=@taker.id%>/edit", class="btn btn-default button">編集する</a> <a href="/taker/<%=@taker.id%>", data-method="delete", class="btn btn-danger button">削除する</a>
+  </div>
+<%else%>
+  <div class="offer">
+    <% if @taker.user_id == current_user.id %>
+    <% else %>
+      <% if @isRoom == true %>
+          <a href="/rooms/<%= @roomId %>", class="btn btn-danger btn-offer">オファー画面へ</a>
+      <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, :value=> @taker.user_id %>
+            <% end %>
+            <%= f.submit "奢りたい！！(オファーする)", class:"btn btn-danger btn-offer" %>
+          <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<%end%>

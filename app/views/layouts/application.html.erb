@@ -28,18 +28,48 @@
 
           <form class="navbar-form navbar-left">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="奢ラレヤーを探す">
+              <%= form_tag("takers/index") do %>
+                <%= text_field_tag :search, nil, placeholder: '奢られヤーを探す', class:"form-control" %>
+                <%= submit_tag '検索',class:"btn btn-default", :name => nil %>
+              <% end %>
             </div>
-            <button type="submit" class="btn btn-default">検索</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">ログイン</a></li>
-            <li><a href="#">お知らせ</a></li>
-            <li><a href="#">やることリスト</a></li>
+            <% if user_signed_in? %>
+              <li><a href="/mypage/<%=current_user.id%>">マイページ</a></li>
+              <li><a href="/messages/<%=current_user.id%>">
+              <% Entry.all.each do |e|%>
+                <% current_user.entries.each do |cue|%>
+                  <% if e.room_id == cue.room_id %>
+                    <% if e.user_id == cue.user_id %>
+                    <%else%>
+                      <% if e.user.messages.where(room_id:cue.room_id).last.try(:created_at) %>
+                        <% if e.user.messages.where(room_id:cue.room_id).last.try(:created_at) > current_user.lastaccesshome %>
+                          <span class="newsign1"></span>
+                        <%else%>
+                        <%end%>
+                      <%end%>
+                    <%end%>
+                  <%else%>
+                  <%end%>
+                <%end%>
+              <%end%>
+              メッセージ</a></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, :method => :delete %></li>
+              <!-- <li><a href="/help">ヘルプ</a></li> -->
+            <% else %>
+              <li><a href="/users/sign_up">新規登録</a></li>
+              <li><a href="/users/sign_in">ログイン</a></li>
+              <!-- <li><a href="/help">ヘルプ</a></li> -->
+            <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <div class="container">
      <%= yield %>
     </div>

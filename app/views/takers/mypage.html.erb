@@ -1,0 +1,6 @@
+<% if current_user %>
+  <h2 class="show"><%= current_user.name %>さん</h2>
+  
+  <p class="show">評価：<span class="glyphicon glyphicon-thumbs-up"></span>    12    <span class="glyphicon glyphicon-thumbs-down"></span>    0</p>
+<%else%>
+<%end%>

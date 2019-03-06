@@ -1,0 +1,24 @@
+<% @entries.each do |e|%>
+  <% current_user.entries.each do |cue|%>
+    <% if e.room_id == cue.room_id %>
+      <% if e.user_id == cue.user_id %>
+      <%else%>
+        <% if e.user.messages.where(room_id:cue.room_id).last.try(:created_at) %>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <p><%= e.user.name %>さん</p>
+              <% if e.user.messages.where(room_id:cue.room_id).last.try(:created_at) > current_user.lastaccesshome %>
+                <span class="newsign"></span>
+                <%= e.user.messages.where(room_id:cue.room_id).order(created_at: :desc).take.try(:content) %>
+              <%else%>
+                <p>新着メッセージはありません</p>
+              <%end%>
+                <div class="detail"><a href="/rooms/<%=e.room.id%>">詳細を見る</a></div>
+            </div>
+          </div>
+        <%end%>
+      <%end%>
+    <%else%>
+    <%end%>
+  <%end%>
+<%end%>

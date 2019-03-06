@@ -46,7 +46,105 @@ footer{
   text-align: center;
 }
 
-.btn-danger{
+.btn-offer{
   width: 300px;
   height: 50px;
+}
+
+.buttons{
+  text-align: center;
+}
+
+.take
+{
+  position: fixed;
+  bottom: 50px;
+  border-radius: 100%;
+  right: 10px;
+  padding: 50px 15px;
+}
+
+.detail{
+  text-align: right;
+}
+
+.newsign{
+  float: left;
+  border-radius: 50%;
+  height: 20px;
+  width:  20px;
+  // background-color: rgb(63, 59, 247);
+  background: orange;
+}
+
+.newsign1{
+  float:right;
+  border-radius: 50%;
+  height: 10px;
+  width:  10px;
+
+  // background-color: rgb(63, 59, 247);
+  background: orange;
+}
+
+.show{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.m-right{
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  margin: 0 0 0 auto;
+  padding: 7px 10px;
+  min-width: 12px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  margin-left: auto;
+  float: right;
+}
+
+.m-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-left: 15px solid #e0edff;
+}
+
+.m-right p{
+  margin: 0;
+  padding: 0;
+}
+
+.m-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 12px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
+
+.m-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #e0edff;
+}
+
+.m-left p {
+  margin: 0;
+  padding: 0;
 }

@@ -1,0 +1,27 @@
+<h3>編集ページ</h3>
+  <%= form_tag("/takers/" + @taker.id.to_s, :method=>:patch, :multipart => true) do %>
+      <%= label_tag "form-image", "画像" %>
+      <%= file_field :taker, :image, id:"form-image", class:"form-control" %>
+    <div class="form-group">
+      <%= label_tag "form-name", "名前" %>
+      <%= text_field :taker, :name, id:"form-name", class:"form-control", value:@taker.name %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-age", "年齢" %>
+      <%= text_field :taker, :age, id:"form-age", class:"form-control", value:@taker.age %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-gender", "性別" %>
+      <%= select_tag 'taker[gender_id]', options_from_collection_for_select(@genders, :id, :category), id:"form-gender",class:"form-control", value:@taker.gender_id %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-place", "場所" %>
+      <%= select_tag 'taker[place_id]', options_from_collection_for_select(@places, :id, :name), id:"form-place",class:"form-control", value:@taker.place_id %>
+    </div>
+    <div class="form-group">
+      <%= label_tag "form-body", "自己紹介" %>
+      <%= text_field :taker, :body, id:"form-body", class:"form-control", value:@taker.body %>
+    </div>
+    <%= submit_tag "変更する", class:"btn btn-default" %>
+
+<% end %>

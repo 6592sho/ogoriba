@@ -1,9 +1,13 @@
-<%= image_tag("man.jpg", class:"image", :alt => "アイコン") %>
+<% if user_signed_in? %>
+  <h5>ようこそ <%= current_user.email %>さん</h5>
+<% else %>
+<% end %>
+  <%= image_tag("man.jpg", class:"image", :alt => "アイコン") %>
 <h1>Ogoriba</h1>
 <p>スキルを活かして、奢ってもらおう！！</p>
 
 <% @takers.each do |t| %>
-  <a href="/show/<%=t.id.to_s%>">
+  <a href="/show/<%=t.id%>">
     <div class="col-sm-4">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -16,4 +20,4 @@
     </div>
   </a>
 <% end %>
-<a href="/new" class="btn btn-default">奢られたい！！</a>
+<a href="/new" class="btn btn-default take">奢られたい！！</a>
